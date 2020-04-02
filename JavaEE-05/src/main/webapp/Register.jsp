@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>注册界面</title>
-    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <% String path = request.getContextPath();%>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/css/layui.css">
 
     <style type="text/css">
         .container{
@@ -78,7 +79,7 @@
 </div>
 
 
-<script src="layui/layui.js"></script>
+<script src="<%=path%>/layui/layui.js"></script>
 <script type="text/javascript">
     layui.use(['element','jquery','form','layer'],function () {
         var $ = layui.jquery;
@@ -94,7 +95,7 @@
             var role = $("#radio input[name='role']:checked").val();
             if(password1 == password2){
                 $.ajax({
-                    url:"http://localhost:8080/register",
+                    url:"http://localhost:8080/app/register",
                     data:{
                         'ID': id,
                         'Password':password1,

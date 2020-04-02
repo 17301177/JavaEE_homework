@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 import java.util.Date;
 
@@ -46,7 +46,7 @@ public class StudentHomework {
     }
 
     public void setSubmitTime(Date submitTime) {
-        SubmitTime = submitTime;
+        SubmitTime = (Date) submitTime.clone();
     }
 
 }

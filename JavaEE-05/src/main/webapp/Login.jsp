@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>登录界面</title>
-    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <% String path = request.getContextPath();%>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/css/layui.css">
 
     <style type="text/css">
         .container{
@@ -62,7 +63,7 @@
     </div>
 
 
-<script src="layui/layui.js"></script>
+<script src="<%=path%>/layui/layui.js"></script>
 <script type="text/javascript">
     layui.use(['element','jquery','form'],function () {
         var $ = layui.jquery;
@@ -74,7 +75,7 @@
             var password = $("#password").val();
             //alert(password);
             $.ajax({
-                url:"http://localhost:8080/login",
+                url:"http://localhost:8080/app/login",
                 async:false,
                 data:{
                     'ID': id,
@@ -83,14 +84,13 @@
                 type:'GET',
                 dataType:'text',
                 success:function (result) {
+                    alert(result);
                     if(result == "student"){
-                        location.href='/student?id='+id;
+                        location.href='http://localhost:8080/app/student?id='+id;
                     }else if(result == "teacher"){
-                        location.href='/teacher?id='+id;
+                        location.href='http://localhost:8080/app/teacher?id='+id;
                     }else if(result == "wrong"){
                         layer.alert("密码错误");
-                    }else{
-                        layer.alert("发生未知错误");
                     }
                 }
             })

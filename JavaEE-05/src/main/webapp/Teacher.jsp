@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="model.StudentHomework" %>
+<%@ page import="Model.StudentHomework" %>
 <%--
   Created by IntelliJ IDEA.
   User: 22141
@@ -11,7 +11,8 @@
 <html>
 <head>
     <title>教师端</title>
-    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <% String path = request.getContextPath();%>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/css/layui.css">
 
 </head>
 <body>
@@ -34,7 +35,7 @@
             List<StudentHomework> list = (List<StudentHomework>)request.getAttribute("list");
             String id = (String) request.getAttribute("userID");
             if(list == null || list.size()<=0){
-                out.print("No Data");
+                //out.print("No Data");
             }else{
                 int index = 1;
                 for(StudentHomework sh : list){
@@ -94,7 +95,7 @@
     </form>
 </div>
 
-<script src="layui/layui.js"></script>
+<script src="<%=path%>/layui/layui.js"></script>
 <script type="text/javascript">
     layui.use(['jquery','form','layer','laydate'],function () {
         var $ = layui.jquery;
@@ -157,7 +158,7 @@
 
             //alert(title+requirement+deadline);
             $.ajax({
-                url:"http://localhost:8080/publish",
+                url:"http://localhost:8080/app/publish",
                 data:{
                     'TeacherID' : id,
                     'Title' : title,

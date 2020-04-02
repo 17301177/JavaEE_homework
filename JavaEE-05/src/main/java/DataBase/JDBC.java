@@ -1,6 +1,8 @@
-import model.StudentHomework;
-import model.SystemUser;
-import model.TeacherHomework;
+package DataBase;
+
+import Model.StudentHomework;
+import Model.SystemUser;
+import Model.TeacherHomework;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -10,14 +12,15 @@ import java.util.List;
 public class JDBC {
 
     public String Login(String id,String password) {
-        //预设驱动名、sql语句
+
         String sql = "Select * from User where ID=? and Password=?";
-        System.out.println("sql:"+sql);
 
         try(Connection con = ConnectionPool.getHikariDataSource().getConnection()){
+            System.out.println("获取了连接");
             try(PreparedStatement pst = con.prepareStatement(sql)){
                 pst.setString(1,id);
                 pst.setString(2,password);
+                System.out.println("sql:"+pst);
                 ResultSet resultSet = pst.executeQuery();
                 if(resultSet.next()){
                     String role = resultSet.getString("Role");
@@ -31,7 +34,7 @@ public class JDBC {
             return "发生SQL异常";
         }
     }
-    public boolean Register(SystemUser user){
+    public static boolean Register(SystemUser user){
         //预设url、驱动名、sql语句
         String sql = "INSERT into User values (?,?,?)";
 
@@ -48,7 +51,7 @@ public class JDBC {
             return false;
         }
     }
-    public List<TeacherHomework> SelectTeacherHomework(){
+    public static List<TeacherHomework> SelectTeacherHomework(){
         //预设url、驱动名、sql语句
         String sql = "Select * from TeacherHomework";
         List<TeacherHomework> list = new ArrayList<>();
@@ -76,7 +79,7 @@ public class JDBC {
             return null;
         }
     }
-    public boolean SubmitHomework(StudentHomework sh){
+    public static boolean SubmitHomework(StudentHomework sh){
         //预设url、驱动名、sql语句
         String sql = "replace into homework(HomeworkID,StudentID,HomeworkTitle,HomeworkContent,SubmitDate) values (?,?,?,?,?)";
         System.out.println("提交了新作业");
@@ -100,7 +103,7 @@ public class JDBC {
             return false;
         }
     }
-    public List<StudentHomework> SelectStudentHomework(){
+    public static List<StudentHomework> SelectStudentHomework(){
         //预设url、驱动名、sql语句
         String sql = "Select * from Homework";
         List<StudentHomework> list = new ArrayList<>();
@@ -126,7 +129,7 @@ public class JDBC {
             return null;
         }
     }
-    public boolean PublishHomework(TeacherHomework sh){
+    public static boolean PublishHomework(TeacherHomework sh){
         //预设url、驱动名、sql语句
         String sql = "replace into TeacherHomework(HomeworkID,TeacherID,HomeworkTitle,Requirement,PublishDate,Deadline) values (?,?,?,?,?,?)";
         System.out.println("发布了新作业");

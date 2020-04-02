@@ -1,7 +1,7 @@
+package DataBase;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
-import java.sql.Connection;
 
 public class ConnectionPool {
 
@@ -17,13 +17,14 @@ public class ConnectionPool {
                 hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/HomeworkSystem?serverTimezone=GMT");
                 hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
                 hikariConfig.setUsername("root");
+                hikariConfig.setPassword("");
 
                 hikariDataSource = new HikariDataSource(hikariConfig);
                 return  hikariDataSource;
-            }else{
-                return  hikariDataSource;
             }
         }
+
+        return null;
     }
 }
 

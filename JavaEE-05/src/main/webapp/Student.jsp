@@ -1,7 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.sun.xml.internal.bind.v2.model.core.ID" %>
-<%@ page import="model.TeacherHomework" %>
-<%--
+<%@ page import="Model.TeacherHomework" %><%--
   Created by IntelliJ IDEA.
   User: 22141
   Date: 2020/3/10
@@ -12,7 +11,8 @@
 <html>
 <head>
     <title>学生端</title>
-    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <% String path = request.getContextPath();%>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/css/layui.css">
 
 </head>
 <body>
@@ -34,7 +34,7 @@
             String id = (String) request.getAttribute("userID");
             System.out.println("接收到ID："+id);
             if(list == null || list.size()<=0){
-                out.print("No Data");
+                //out.print("No Data");
             }else{
                 int index = 1;
                 for(TeacherHomework th : list){
@@ -88,7 +88,7 @@
     </form>
 </div>
 
-<script src="layui/layui.js"></script>
+<script src="<%=path%>/layui/layui.js"></script>
 <script type="text/javascript">
     layui.use(['jquery','form','table','layer'],function () {
         var $ = layui.jquery;
@@ -134,7 +134,7 @@
             var date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
 
             $.ajax({
-                url:"http://localhost:8080/submit",
+                url:"http://localhost:8080/app/submit",
                 data:{
                     'HomeworkID' : homeworkId,
                     'StudentID' : id,
