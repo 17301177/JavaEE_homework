@@ -11,6 +11,7 @@
 
     <modules>
         <module>JavaEE-05</module>
+        <module>JavaEE-06</module>
     </modules>
 
     <build>
