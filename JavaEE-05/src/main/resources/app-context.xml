@@ -7,6 +7,6 @@
 
     <bean id="" class=""></bean>
     <context:component-scan base-package="Bean"/>
-    <context:component-scan base-package="DataBase"/>
+    <context:component-scan base-package="dataBase"/>
     <context:component-scan base-package="Model"/>
 </beans>
