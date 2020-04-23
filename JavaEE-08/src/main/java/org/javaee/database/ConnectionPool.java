@@ -19,6 +19,7 @@ public class ConnectionPool {
                 hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
                 hikariConfig.setUsername("root");
                 hikariConfig.setPassword("");
+                hikariConfig.setAutoCommit(false);
 
                 hikariDataSource = new HikariDataSource(hikariConfig);
                 return  hikariDataSource;

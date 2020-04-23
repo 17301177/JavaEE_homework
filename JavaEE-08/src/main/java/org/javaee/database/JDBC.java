@@ -23,7 +23,7 @@ public class JDBC {
     @Autowired
     SystemUser systemUser;
 
-    public String Login(String id,String password) {
+    public String login(String id, String password) {
 
         String sql = "Select * from User where ID=? and Password=?";
 
@@ -46,7 +46,7 @@ public class JDBC {
             return "发生SQL异常";
         }
     }
-    public boolean Register(SystemUser user){
+    public Connection register(SystemUser user){
         //预设url、驱动名、sql语句
         String sql = "INSERT into User values (?,?,?)";
 
@@ -56,14 +56,14 @@ public class JDBC {
                 pst.setString(2,user.getPassword());
                 pst.setString(3,user.getRole());
                 pst.execute();
-                return true;
+                return con;
             }
         }catch (SQLException e){
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
-    public List<TeacherHomework> SelectTeacherHomework(){
+    public List<TeacherHomework> selectTeacherHomework(){
         //预设url、驱动名、sql语句
         String sql = "Select * from TeacherHomework";
         List<TeacherHomework> list = new ArrayList<>();
@@ -91,7 +91,7 @@ public class JDBC {
             return null;
         }
     }
-    public boolean SubmitHomework(StudentHomework sh){
+    public boolean submitHomework(StudentHomework sh){
         //预设url、驱动名、sql语句
         String sql = "replace into homework(HomeworkID,StudentID,HomeworkTitle,HomeworkContent,SubmitDate) values (?,?,?,?,?)";
         System.out.println("提交了新作业");
@@ -115,7 +115,7 @@ public class JDBC {
             return false;
         }
     }
-    public List<StudentHomework> SelectStudentHomework(){
+    public List<StudentHomework> selectStudentHomework(){
         //预设url、驱动名、sql语句
         String sql = "Select * from Homework";
         List<StudentHomework> list = new ArrayList<>();
@@ -140,7 +140,7 @@ public class JDBC {
             return null;
         }
     }
-    public boolean PublishHomework(TeacherHomework sh){
+    public boolean publishHomework(TeacherHomework sh){
         //预设url、驱动名、sql语句
         String sql = "replace into TeacherHomework(HomeworkID,TeacherID,HomeworkTitle,Requirement,PublishDate,Deadline) values (?,?,?,?,?,?)";
         System.out.println("发布了新作业");

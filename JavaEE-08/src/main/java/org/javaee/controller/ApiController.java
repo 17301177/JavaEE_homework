@@ -5,7 +5,6 @@ import org.javaee.bean.SystemUser;
 import org.javaee.bean.TeacherHomework;
 import org.javaee.database.JDBC;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -51,7 +50,7 @@ public class ApiController {
             System.out.println(password);
 
             JDBC jdbc = new JDBC();
-            String loginResult = jdbc.Login(id, password);
+            String loginResult = jdbc.login(id, password);
             System.out.println("登录结果:"+loginResult);
 
             PrintWriter out = resp.getWriter();
@@ -93,7 +92,7 @@ public class ApiController {
         th.setPublishDate(publishDate);
         th.setDeadLine(deadline);
 
-        jdbc.PublishHomework(th);
+        jdbc.publishHomework(th);
     }
 
     @RequestMapping("register")
@@ -106,7 +105,7 @@ public class ApiController {
         user.setId(id);
         user.setPassword(password);
         user.setRole(role);
-        jdbc.Register(user);
+        jdbc.register(user);
     }
 
     @RequestMapping("submit")
@@ -136,7 +135,7 @@ public class ApiController {
         sh.setContent(content);
         sh.setSubmitTime(date);
 
-        if(jdbc.SubmitHomework(sh)){
+        if(jdbc.submitHomework(sh)){
             System.out.println("插入成功");
         }
     }
@@ -145,7 +144,7 @@ public class ApiController {
     public void teacher(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("id");
-        List<StudentHomework> list = jdbc.SelectStudentHomework();
+        List<StudentHomework> list = jdbc.selectStudentHomework();
         req.setAttribute("userID",id);
         req.setAttribute("list",list);
         req.getRequestDispatcher("/Teacher.jsp").forward(req,resp);
@@ -158,7 +157,7 @@ public class ApiController {
         String id = req.getParameter("id");
         System.out.println(id);
 
-        List<TeacherHomework> list = jdbc.SelectTeacherHomework();
+        List<TeacherHomework> list = jdbc.selectTeacherHomework();
         req.setAttribute("userID",id);
         req.setAttribute("list",list);
         req.getRequestDispatcher("/Student.jsp").forward(req,resp);
