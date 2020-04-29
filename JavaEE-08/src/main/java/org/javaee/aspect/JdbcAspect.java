@@ -1,4 +1,4 @@
-package org.javaee.database;
+package org.javaee.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;

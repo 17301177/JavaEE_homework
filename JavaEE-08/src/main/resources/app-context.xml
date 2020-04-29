@@ -10,5 +10,5 @@
     <bean id="StudentHomework" class="org.javaee.bean.StudentHomework" scope="prototype"/>
     <bean id="SystemUser" class="org.javaee.bean.SystemUser" scope="prototype"/>
     <bean id="JDBC" class="org.javaee.database.JDBC" scope="singleton"/>
-    <bean id="Aspect" class="org.javaee.database.JdbcAspect" scope="prototype"/>
+    <bean id="Aspect" class="org.javaee.aspect.JdbcAspect" scope="prototype"/>
 </beans>
