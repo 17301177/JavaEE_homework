@@ -9,6 +9,7 @@
     <bean id="TeacherHomework" class="org.javaee.bean.TeacherHomework" scope="prototype"/>
     <bean id="StudentHomework" class="org.javaee.bean.StudentHomework" scope="prototype"/>
     <bean id="SystemUser" class="org.javaee.bean.SystemUser" scope="prototype"/>
-    <bean id="JDBC" class="org.javaee.database.JDBC" scope="singleton"/>
     <bean id="Aspect" class="org.javaee.aspect.JdbcAspect" scope="prototype"/>
+    <context:component-scan base-package="org.javaee.service"/>
+    <context:component-scan base-package="org.javaee.dao"/>
 </beans>

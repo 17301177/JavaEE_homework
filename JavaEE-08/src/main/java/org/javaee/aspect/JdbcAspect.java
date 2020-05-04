@@ -14,7 +14,7 @@ public class JdbcAspect {
     //异常处理逻辑：
     // 如果正常运作，将connection对象返回
     // 如果发生异常，返回null
-    @Pointcut("execution(* org.javaee.database.JDBC.register(org.javaee.bean.SystemUser))")
+    @Pointcut("execution(* org.javaee.service.*.*(..))")
     public void service(){}
 
     @Around("service()")
